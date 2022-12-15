@@ -33,14 +33,14 @@ const corsOption = {
 app.use(cors({ credentials: true, origin: `http://localhost:3000` }));
 app.use(cookieParser());
 app.use(bodyParser.json()); // Transformer les body en json
-app.use(
-  "./client/public/image",
-  express.static(path.join(__dirname, "./client/public/image"))
-);
-app.use(
-  "./client/public/posts",
-  express.static(path.join(__dirname, "./client/public/posts"))
-);
+// app.use(
+//   "./client/public/image",
+//   express.static(path.join(__dirname, "./client/public/image"))
+// );
+// app.use(
+//   "./client/public/posts",
+//   express.static(path.join(__dirname, "./client/public/posts"))
+// );
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // jwt
@@ -101,16 +101,8 @@ app.use("/api/post", PostRoutes);
 app.use("/api/chat", ChatRoutes);
 app.use("/api/message", MessageRoutes);
 app.use(express.static(path.join(__dirname, "./client")));
-app.get("*", (req, res) => {
+app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-//server
-const server = require("http").createServer(app);
-const io = require("socket.io")(server, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-  },
-});
 app.listen(process.env.PORT || 7500, () => console.log(`Back is running`));
