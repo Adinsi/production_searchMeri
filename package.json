@@ -1,0 +1,41 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "18.12.1"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "heroku-postbuild": "cd client && npm install npm run build",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run start\" \"npm run client\" ",
+    "soc": "cd socket && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mailgun-js": "^0.22.0",
+    "mongoose": "^6.6.0",
+    "mongoose-unique-validator": "^3.1.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.8.0",
+    "sharp": "^0.31.1",
+    "socket.io": "^4.5.3",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "@types/mailgun-js": "^0.22.12"
+  }
+}
